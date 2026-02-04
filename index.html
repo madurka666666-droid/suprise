@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💘</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      width: 340px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 90px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background-color: #adb5bd;
+      color: white;
+      position: absolute;
+      left: 160px;
+      top: 0;
+    }
+
+    .celebrate {
+      text-align: center;
+      color: #ff4d6d;
+      font-size: 26px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Valentine card -->
+  <div class="card" id="card">
+    <img src="valentines.png" alt="Lora 💖">
+    <h1>Lora, can you be my Valentine? 💘</h1>
+
+    <div class="buttons">
+      <button id="yes" onclick="yesClicked()">Yes 💖</button>
+      <button id="no">No 💔</button>
+    </div>
+  </div>
+
+  <script>
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 10000);
+    }, 400);
+
+    // Runaway No button
+    const noButton = document.getElementById("no");
+
+    noButton.addEventListener("mouseover", () => {
+      const x = Math.random() * 180;
+      const y = Math.random() * 50;
+      noButton.style.left = x + "px";
+      noButton.style.top = y + "px";
+    });
+
+    // Yes button
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div class="celebrate">
+          <h1>YAYYY!! 💕💖💘</h1>
+          <p>Happy Valentine’s Day, Lora 😘</p>
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
